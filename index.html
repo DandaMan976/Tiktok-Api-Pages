@@ -5,23 +5,40 @@
   <title>AI Video Agent</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 20px; }
-    #message { color: #333; font-size: 18px; }
-    button { background: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; }
+    #message, #status { color: #333; font-size: 18px; margin-bottom: 10px; }
+    button { background: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; margin-right: 10px; }
     button:hover { background: #45a049; }
+    #authButton { background: #ff0050; } /* Distinct color for auth button */
+    #authButton:hover { background: #cc0040; }
   </style>
 </head>
 <body>
   <h1>AI Video Agent</h1>
-  <p id="message">Click to see mock trends...</p>
-  <button onclick="triggerWorkflow()">Trigger AI Agent</button>
+  <p id="status">Status: Not authenticated</p>
+  <p id="message">Click to authenticate and see trends...</p>
+  <button id="authButton" onclick="authenticate()">Log in with TikTok</button>
+  <button onclick="triggerWorkflow()" disabled>Trigger AI Agent</button>
 
   <script>
+    function authenticate() {
+      const statusElement = document.getElementById("status");
+      const triggerButton = document.getElementById("trigger");
+      statusElement.innerText = "Status: Authenticating...";
+      setTimeout(() => {
+        statusElement.innerText = "Status: Authenticated";
+        triggerButton.disabled = false; // Enable the trigger button after mock auth
+      }, 1000);
+    }
+
     function triggerWorkflow() {
       const messageElement = document.getElementById("message");
-      messageElement.innerText = "Fetching mock trends...";
+      const statusElement = document.getElementById("status");
+      messageElement.innerText = "Fetching trends from TikTok...";
+      statusElement.innerText = "Status: Fetching...";
       setTimeout(() => {
         const mockHashtags = "#Tech, #Viral, #DIY";
-        messageElement.innerText = `Mock Trends: ${mockHashtags}`;
+        messageElement.innerText = `TikTok Trends: ${mockHashtags}`;
+        statusElement.innerText = "Status: Success";
       }, 1000);
     }
   </script>
