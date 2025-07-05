@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Video Agent</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    #message { color: #333; font-size: 18px; }
+    button { background: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; }
+    button:hover { background: #45a049; }
+  </style>
+</head>
+<body>
+  <h1>AI Video Agent</h1>
+  <p id="message">Click to see mock trends...</p>
+  <button onclick="triggerWorkflow()">Trigger AI Agent</button>
+
+  <script>
+    function triggerWorkflow() {
+      const messageElement = document.getElementById("message");
+      messageElement.innerText = "Fetching mock trends...";
+      setTimeout(() => {
+        const mockHashtags = "#Tech, #Viral, #DIY";
+        messageElement.innerText = `Mock Trends: ${mockHashtags}`;
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
